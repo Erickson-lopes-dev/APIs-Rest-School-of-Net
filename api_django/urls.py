@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-
+from rest_framework.authtoken import views
 from api.api import CategoryViewSet, ProductViewSet
 
 router = routers.DefaultRouter(trailing_slash=True)
@@ -25,5 +25,15 @@ router.register('product', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls+[path('auth', views.obtain_auth_token)])),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+
+# enviar como post para /api/auth
+# Headers -> Authorization
+# Toekn adasdjasdjaksdkasdkaksd
+# {
+#   "username" : "admin",
+#    "password" : "admin"
+# }
