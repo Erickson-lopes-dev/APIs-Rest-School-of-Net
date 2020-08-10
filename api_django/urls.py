@@ -19,7 +19,7 @@ from rest_framework import routers
 
 from api.views import CategoryViewSet
 
-router = routers.DefaultRouter(trailing_slash=False)
+router = routers.DefaultRouter(trailing_slash=True)
 router.register('categories', CategoryViewSet)
 
 urlpatterns = [
